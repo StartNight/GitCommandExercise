@@ -14,7 +14,7 @@ git add *.txt //git添加目录和子目录下所有.txt结尾的文件
 git add .\testFile\    // git 添加testFile目录下所有文件 
 git add .\Git学习笔记.md // git添加单独的一个文件
 git commit -m 'initial project version' // 提交到本地;'initial project version'为提交信息
-
+git commit -o 1.txt -m "只提交1.txt文件" // 只将当前的1.txt文件提交到本地 其他修改的文件不提交 - o==only
 git status //查看当前的文件状态
 git status -s  //查看当前的文件状态,显示的更精简
 
@@ -26,7 +26,25 @@ git --stat //每次提交的下面列出所有被修改过的文件、有多少�
 $ git commit -m 'initial commit'
 $ git add forgotten_file
 $ git commit --amend // 第二次提交将代替第一提交的结果
+git reset HEAD CONTRIBUTING.md //取消暂存 CONTRIBUTING.md 文件
 
+git checkout -- <file> 是一个危险的命令/对那个文件在本地的任何修改都会消失——Git 会用最近提交的版本覆盖掉它
+
+// 远程仓库
+
+git remote // 显示当前的远程仓库的名字
+git remote -v // 显示当前的远程仓库名字和URL
+git remote add gitExercise https://github.com/StartNight/GitCommandExercise.git // 添加一个名为gitExercise的远程仓库
+git fetch gitExercise // 拉取 gitExercise的仓库 可以用 远程仓库名 代替URL
+git push <remote> <branch> //推送到远程分支
+git push origin master
+git remote show origin // 查看origin远程信息
+git remote rename pb paul // 远端重命名将dp改名为paul
+git remote remover paul // 删除远端
+
+// git 打标签 
+git tag //列出标签
+git tag -a v1.0 -m "添加tag" // 添加v1.0的tag
 
 ```
 
