@@ -1,4 +1,5 @@
 ## Git 命令
+## 一.基础篇
 ```shell
 git init // 初始化一个控制的git仓库
 git clone "git的克隆地址" // 克隆git项目
@@ -14,6 +15,7 @@ git add *.txt //git添加目录和子目录下所有.txt结尾的文件
 git add .\testFile\    // git 添加testFile目录下所有文件 
 git add .\Git学习笔记.md // git添加单独的一个文件
 git commit -m 'initial project version' // 提交到本地;'initial project version'为提交信息
+git commit -a -m "跳过暂存区,直接提交文件"// -a相当于git add,加上会自动把所有已经跟踪过的文件暂存起来一并提交
 git commit -o 1.txt -m "只提交1.txt文件" // 只将当前的1.txt文件提交到本地 其他修改的文件不提交 - o==only
 git status //查看当前的文件状态
 git status -s  //查看当前的文件状态,显示的更精简
@@ -42,13 +44,22 @@ git remote show origin // 查看origin远程信息
 git remote rename pb paul // 远端重命名将dp改名为paul
 git remote remover paul // 删除远端
 
-// git 打标签 
+// git 打标签
 git tag //列出标签
 git tag -a v1.0 -m "添加tag" // 添加v1.0的tag
 
+// 默认情况下，git push 命令并不会传送标签到远程仓库服务器上。 在创建完标签后你必须显式地推送标签到共享服务器上。 这个过程就像共享远程分支一样——你可以运行 
+git push origin <tagname> // 推送标签到远端
+git push origin v1.0 //将标签v1.0推送到origin远程仓库
+git push origin --tags // 一次将所有不在远程仓库的标签都上传上去
+
+git tag -d v1.0 // 删除本地的v1.0标签 
+//上述命令并不会从任何远程仓库中移除这个标签，你必须用 git push <remote> :refs/tags/<tagname> 来更新你的远程仓库
+git push origin :refs/tags/v1.0 //删除远程仓库的v1.0标签
+git push origin --delete <tagname> // 删除远程标签
 ```
 
-## Git概念
+### Git概念
 
 - Git 有三种状态，你的文件可能处于其中之一： 已提交（committed）、已修改（modified） 和 已暂存（staged）
 - 已修改表示修改了文件，但还没保存到数据库中。
@@ -75,3 +86,16 @@ git tag -a v1.0 -m "添加tag" // 添加v1.0的tag
 匹配模式可以以（/）结尾指定目录。
 
 要忽略指定模式以外的文件或目录，可以在模式前加上叹号（!）取反。
+
+## 二.Git分支篇
+
+```shell
+git branch testing //创建分支
+git branch // 列出分支
+git chechout testing // 切换testing分支
+git chechout -b testing // 创建一个testing分支并切换过去
+
+git log --oneline --decorate --graph --all //输出提交历史,各个分支的指向以及项目的分支分叉情况.
+
+
+```
